@@ -11,7 +11,7 @@ class ExercisesController < ApplicationController
     # 【要件】注文されていない料理を提供しているすべてのお店を返すこと
     #   * left_outer_joinsを使うこと
     @shops = Shop
-    .left_outer_joins(foods: order_foods)
+    .left_outer_joins(foods: :order_foods)
     .distinct.where(foods: { order_foods: { id: nil } })
   end
 
@@ -20,7 +20,7 @@ class ExercisesController < ApplicationController
     #   * joinsを使うこと
     #   * 取得したAddressのインスタンスにorders_countと呼びかけると注文の数を返すこと
     @address = Address
-    .joinsを使うこと(:orders)
+    .joins(:orders)
     .select("adresses.*, COUNT(orders.*) orders_count")
     .group("adresses.id")
     .order("orders_count DESC")
