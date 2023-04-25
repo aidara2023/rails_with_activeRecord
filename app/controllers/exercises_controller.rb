@@ -21,8 +21,8 @@ class ExercisesController < ApplicationController
     #   * 取得したAddressのインスタンスにorders_countと呼びかけると注文の数を返すこと
     @address = Address
     .joins(:orders)
-    .select("adresses.*, COUNT(orders.*) AS orders_count")
-    .group("adresses.id")
+    .select("addresses.*, COUNT(orders.*)  orders_count")
+    .group("addresses.id")
     .order("orders_count DESC")
     .first
   end
