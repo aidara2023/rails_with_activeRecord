@@ -35,7 +35,7 @@ class ExercisesController < ApplicationController
     .joins(orders: :foods)
     .select("customers.*, SUM(foods.price) AS foods_price_sum")
     .group("customers.id")
-    .order("foods_price_sum_DESC")
+    .order("foods_price_sum DESC")
     .first
   end
 end
